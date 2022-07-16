@@ -1,0 +1,22 @@
+---
+# This is an example playbook to execute Ansible tests.
+- name: Verify
+  hosts: all
+  gather_facts: false
+  become: true
+  vars:
+    cilium_bin_path: /usr/local/bin/cilium
+
+  vars_files:
+    - ../../defaults/main.yml
+
+  tasks:
+    - name: Check Cilium version.
+      command: "{{ cilium_bin_path }} version"
+      changed_when: false
+      register: cilium_verify_version
+
+    - name: Verify Cilium's version is {{ cilium_version }}.
+      assert:
+        that:
+          - cilium_version in cilium_verify_version.stdout
