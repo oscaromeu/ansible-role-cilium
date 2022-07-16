@@ -3,7 +3,6 @@
   hosts: all
   become: true
   gather_facts: true
-  tasks:
-    - name: "Include ansible_role_cilium"
-      include_role:
-        name: "ansible_role_cilium"
+
+  roles:
+    - role: ansible-role-cilium
