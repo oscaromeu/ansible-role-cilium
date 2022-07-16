@@ -27,7 +27,7 @@ galaxy_info:
 
   galaxy_tags:
   - kubernetes
-  - CNI
+  - cni
   - cilium
   - cli
 
