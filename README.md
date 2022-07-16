@@ -75,10 +75,22 @@ molecule create -s default
 molecule converge -s default -- 
 ```
 
-Any argument after passed after the `--` will be parsed by ansible e.g execute ansible with verbose output 
+Any argument passed after the `--` will be parsed by ansible e.g execute ansible with verbose output 
 
 ```
 molecule converge -s default -- -vvv
+```
+
+Destroy the test environment
+
+```
+molecule destroy -s default
+```
+
+or
+
+```
+molecule destroy --all
 ```
 
 License
