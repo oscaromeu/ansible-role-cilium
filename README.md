@@ -50,9 +50,9 @@ Example Playbook
 
 
 ```yml
-    - hosts: all
-      roles:
-         - { role: oscaromeu.ansible_role_cilium }
+- hosts: all
+  roles:
+     - { role: oscaromeu.cilium }
 ```
 
 Execute test with molecule
