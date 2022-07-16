@@ -36,7 +36,7 @@ The location where the cilium binary will be installed.
 Dependencies
 ------------
 
-In order to run molecule test the following has to meet
+In order to run molecule test the following has to be meet
 
 ```
 molecule 4.0.0 using python 3.10
