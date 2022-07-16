@@ -82,7 +82,7 @@ molecule converge -s default -- -vvv
 License
 -------
 
-WTF
+Apache 2.0
 
 Author Information
 ------------------
