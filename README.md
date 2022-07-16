@@ -1,6 +1,8 @@
 Ansible Role Cilium
 =========
 
+[![CI](https://github.com/oscaromeu/ansible-role-cilium/actions/workflows/ci.yml/badge.svg)](https://github.com/oscaromeu/ansible-role-cilium/actions/workflows/ci.yml)
+
 This role installs cilium cli
 
 Requirements
