@@ -28,7 +28,7 @@ cilium_version: '0.11.11'
 Using these variables the binaries can be upgraded or downgraded.
 
 ```yml
-cilium_bin_path: /usr/local/bin/helm
+cilium_bin_path: /usr/local/bin/cilium
 ```
 
 The location where the cilium binary will be installed.
