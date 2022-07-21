@@ -2,13 +2,10 @@
 # defaults file for ansible_role_cilium
 
 # see https://github.com/cilium/cilium-cli/releases
-cilium_version: 0.11.11
-
-# OS and hardware architectire
-os_arch: arm64
+cilium_version: 0.12.0
 
 # path instalation
 cilium_bin_path: /usr/local/bin
 
 # Uninstall will make use of file module and remove binaries with absent state
-uninstall_tools: false
+uninstall: false

@@ -1,9 +1,5 @@
 ---
-- name: Remove cilium cni
-  file:
-    path: "{{ cilium_bin_path }}"
-    state: absent
-  when: uninstall_tools
+
 
 - name: Check if cilium binary exists.
   stat:
@@ -17,9 +13,14 @@
   register: cilium_existing_version
 
 - name: Detect host architecture and set facts
-  set_fact: os_arch="amd64" kubectl_arch="amd64"
+  set_fact: os_arch="amd64"
   register: result
   when: ansible_facts.architecture == "x86_64"
+
+- name: Detect host architecture and set facts
+  set_fact: os_arch="arm64"
+  register: result
+  when: ansible_facts.architecture == "aarch64"
 
 - name: Download cilium hash from Github URL
   get_url:
@@ -28,7 +29,7 @@
     mode: 0644
   when: >
     (not cilium_check.stat.exists or cilium_version not in cilium_existing_version.stdout)
-    and not uninstall_tools
+    and not uninstall
 - name: Compute sha256 sum
   shell: >
     set -o pipefail && \
@@ -39,18 +40,18 @@
   register: sha256
   when: >
     (not cilium_check.stat.exists or cilium_version not in cilium_existing_version.stdout)
-    and not uninstall_tools
+    and not uninstall
 - name: Set fact cilium checksum binary result
   set_fact: "cilium_checksum_binary={{ sha256.stdout }}"
   when: >
     (not cilium_check.stat.exists or cilium_version not in cilium_existing_version.stdout)
-    and not uninstall_tools
+    and not uninstall
 - name: Show extracted checksum
   debug: msg="{{ cilium_checksum_binary }}"
   failed_when: false
   when: >
     (not cilium_check.stat.exists or cilium_version not in cilium_existing_version.stdout)
-    and not uninstall_tools
+    and not uninstall
 - name: Download cilium file to unarchive
   get_url:
     url: "https://github.com/cilium/cilium-cli/releases/download/v{{ cilium_version }}/cilium-linux-{{ os_arch }}.tar.gz"
@@ -59,7 +60,7 @@
     mode: 0644
   when: >
     (not cilium_check.stat.exists or cilium_version not in cilium_existing_version.stdout)
-    and not uninstall_tools
+    and not uninstall
 - name: Unarchive cilium binary
   unarchive:
     src: /tmp/cilium-linux-{{ os_arch }}.tar.gz
@@ -69,4 +70,4 @@
   notify: copy cilium binary
   when: >
     (not cilium_check.stat.exists or cilium_version not in cilium_existing_version.stdout)
-    and not uninstall_tools
+    and not uninstall

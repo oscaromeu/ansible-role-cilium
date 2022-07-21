@@ -1,5 +1,11 @@
 ---
 # tasks file for ansible_role_cilium
 - name: Install cilium
-  include_tasks: install-cilium.yml
+  include_tasks: install.yml
+  when: not uninstall
+  tags: cilium
+
+- name: Uninstall cilium
+  include_tasks: uninstall.yml
+  when: uninstall
   tags: cilium

@@ -16,7 +16,7 @@ Role Variables
 Available variables are listed below, along with default values (see `defaults/main.yml`)
 
 ```yml
-uninstall_tools: true
+uninstall: true
 ```
 
 By default the platform is linux and the architecture is arm64 (`os_arch: arm64`) . These variables are checked and configured at runtime by the role so its not necessary to adjust them.

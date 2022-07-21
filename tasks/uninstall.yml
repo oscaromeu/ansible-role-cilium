@@ -1,0 +1,6 @@
+---
+- name: Remove cilium cni
+  file:
+    path: "{{ cilium_bin_path }}"
+    state: absent
+  when: uninstall
